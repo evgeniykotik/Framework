@@ -6,8 +6,8 @@ class Application
 {
     private $pager;
     private $template = null;
-    private const TEMPLATE_ID="myStudy/templatesID";
-
+    private const TEMPLATE_ID = "myStudy/templatesID";
+    private const FOLDER_TEMPLATES = __DIR__ . "/../templates/";
 
     public function __construct()
     {
@@ -38,18 +38,17 @@ class Application
     {
         $config = Multiton::get(Config::class);
         return $config->getValue(Application::TEMPLATE_ID);
-
     }
 
     public function header()
     {
         $this->startBuffer();
-        require_once __DIR__ . "/../templates/" . $this->getId() . "/header.php";
+        require_once Application::FOLDER_TEMPLATES . $this->getId() . "/header.php";
     }
 
     public function footer()
     {
-        require_once __DIR__ . "/../templates/" . $this->getId() . "/footer.php";
+        require_once Application::FOLDER_TEMPLATES . $this->getId() . "/footer.php";
         $this->endBuffer();
     }
 

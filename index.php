@@ -8,11 +8,14 @@ if (!defined("ACCESS")) {
 }
 $application->getPager()->setProperty("title", "История проекта");
 $application->getPager()->setProperty("h1", "История проекта создания фреймворка");
+$application->getPager()->setProperty("header", "Фреймворк");
 $application->getPager()->addJs("https://www.google-analytics.com/analytics.js");
 $application->getPager()->addCss("assets/style.css");
+$application->getPager()->addCss("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
 $application->header();
 
 ?>
+
     <h1><?php echo "#FW_PAGE_PROPERTY_h1#" ?></h1>
     <h2>28.11.2022</h2>
     <ol> Работа на первым этапом:

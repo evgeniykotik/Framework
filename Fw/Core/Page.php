@@ -39,7 +39,7 @@ class Page
         }
     }
 
-    public function setProperty(string $id, mixed $value)
+    public function setProperty(string $id, $value)
     {
         $this->variables[$id] = $value;
     }
