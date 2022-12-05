@@ -2,15 +2,25 @@
 
 namespace Fw\Core;
 
+use Fw\Core\Type\Request;
+use Fw\Core\Type\Server;
+use Fw\Core\Type\Session;
+
 class Application
 {
     private $pager;
+    private $request;
+    private $session;
+    private $server;
     private $template = null;
     private const FOLDER_TEMPLATES = __DIR__ . "/../templates/";
 
     public function __construct()
     {
         $this->pager = Multiton::get(Page::class);
+        $this->request = Multiton::get(Request::class);
+        $this->server = Multiton::get(Server::class);
+        $this->session = Multiton::get(Session::class);
     }
 
     private function startBuffer()
