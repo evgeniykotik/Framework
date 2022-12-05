@@ -1,2 +1,8 @@
 <?php
-$config=['db'=>['login'=>'123']];
+
+if (!defined("ACCESS")) {
+    die("Доступ закрыт");
+}
+
+$config = ['db' => ['login' => '123'],
+    'myStudy' => ['templatesID' => 'templatesID']];

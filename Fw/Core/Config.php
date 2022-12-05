@@ -1,29 +1,19 @@
 <?php
 
-
 namespace Fw\Core;
 
 class Config
 {
     private $config;
     private const ERROR_CONFIG = 'Config value not found';
-    private static $instance = null;
 
-    private function __construct()
+    public function __construct()
     {
-        require_once '../config.php';
+        require_once __DIR__ . '/../config.php';
         $this->config = $config;
     }
 
-    public static function getValue(string $path)
-    {
-        if (is_null(self::$instance)) {
-            self::$instance = new self();
-        }
-        return self::$instance->getValueInner($path);
-    }
-
-    private function getValueInner(string $path)
+    public function getValue(string $path)
     {
         $path = explode('/', $path);
         $count = count($path);
@@ -37,6 +27,3 @@ class Config
         return $tempValue;
     }
 }
-
-print_r(Config::getValue('db/login'));
-
