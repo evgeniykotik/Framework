@@ -34,8 +34,7 @@ class Application
 
     private function getTemplatePath()
     {
-        $config = Multiton::get(Config::class);
-        $templatePath = $config->getValue("template");
+        $templatePath= Config::getValue("template");
         return $templatePath ?: "default";
     }
 
