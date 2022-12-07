@@ -7,13 +7,9 @@ if (!defined("ACCESS")) {
     die("Доступ закрыт");
 }
 
-$pager->setProperty("title", "История проекта");
-$pager->setProperty("h1", "История проекта создания фреймворка");
-$pager->setProperty("header", "Фреймворк");
 $pager->addJs("https://www.google-analytics.com/analytics.js");
 $pager->addCss("assets/style.css");
 $pager->addCss("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
-
 $application->header();
 
 ?>
@@ -39,4 +35,7 @@ $application->header();
     </ol>
 
 <?php
+$pager->setProperty("title", "История проекта");
+$pager->setProperty("header", "Фреймворк");
+$pager->setProperty("h1", "История проекта создания фреймворка");
 $application->footer();

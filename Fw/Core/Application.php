@@ -6,7 +6,6 @@ class Application
 {
     private $pager;
     private $template = null;
-    private const TEMPLATE_ID = "myStudy/templatesID";
     private const FOLDER_TEMPLATES = __DIR__ . "/../templates/";
 
     public function __construct()
@@ -22,33 +21,33 @@ class Application
     private function endBuffer()
     {
         $contentPage = ob_get_contents();
-        foreach ($this->pager->getAllReplace() as $macros => $value) {
-            $contentPage = str_replace($macros, $value, $contentPage);
-        }
+        $replaces = $this->pager->getAllReplace();
+        $contentPage = str_replace(array_keys($replaces), array_values($replaces), $contentPage);
         $this->restartBuffer();
         echo $contentPage;
     }
 
-    private function restartBuffer()
+    public function restartBuffer()
     {
-        ob_end_clean();
+        ob_clean();
     }
 
-    private function getId()
+    private function getTemplatePath()
     {
         $config = Multiton::get(Config::class);
-        return $config->getValue(Application::TEMPLATE_ID);
+        $templatePath = $config->getValue("template");
+        return $templatePath ?: "default";
     }
 
     public function header()
     {
         $this->startBuffer();
-        require_once Application::FOLDER_TEMPLATES . $this->getId() . "/header.php";
+        require_once Application::FOLDER_TEMPLATES . $this->getTemplatePath() . "/header.php";
     }
 
     public function footer()
     {
-        require_once Application::FOLDER_TEMPLATES . $this->getId() . "/footer.php";
+        require_once Application::FOLDER_TEMPLATES . $this->getTemplatePath() . "/footer.php";
         $this->endBuffer();
     }
 
