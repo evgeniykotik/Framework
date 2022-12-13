@@ -14,6 +14,7 @@ class Application
     private $server;
     private $template = null;
     private const FOLDER_TEMPLATES = __DIR__ . "/../templates/";
+    private const FOLDER_COMPONENTS = __DIR__ . "/../components/";
 
     public function __construct()
     {
@@ -90,20 +91,11 @@ class Application
 
     private function getIncludeComponent(string $component = "content:default", array $params = [])
     {
-        $arrayOfPath = explode(":", $component);
-        foreach ($arrayOfPath as $value) {
-            $componentPath = __DIR__ . "/../components/".$value."/";
-        }
-        $componentInclude = $componentPath . ".class.php";
-        if (!file_exists($componentInclude)) return null;
-        require_once $componentInclude;
-        $component = new $componentPath($id, $params, $__path);
-        return $component;
+        $path = str_replace(":", "/", $component);
+        $componentPath = self::FOLDER_COMPONENTS . $path . "/.class.php";
+        if (!file_exists($componentPath)) return null;
+        require_once $componentPath;
+        $componentInstance = new $componentPath($id, $params, $__path);
+        return $componentInstance;
     }
 }
-$component = "content:default";
-$arrayOfPath = explode(":", $component);
-foreach ($arrayOfPath as $value) {
-    $component_path = __DIR__ . "/../components/".$value;
-}
-echo $component_path;
