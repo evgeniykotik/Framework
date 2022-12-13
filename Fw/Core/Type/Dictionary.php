@@ -44,56 +44,72 @@ class Dictionary implements \Iterator, \ArrayAccess, \Countable, \JsonSerializab
     //iterator
     public function current()
     {
-        // TODO: Implement current() method.
+        return current($this->values);
     }
 
     public function next()
     {
-        // TODO: Implement next() method.
+        return next($this->values);
     }
 
     public function key()
     {
-        // TODO: Implement key() method.
+        return key($this->values);
     }
 
     public function valid()
     {
-        // TODO: Implement valid() method.
+        return current($this->values) != null;
     }
 
     public function rewind()
     {
-        // TODO: Implement rewind() method.
+        reset($this->values);
     }
+
     //ArrayAccess
     public function offsetExists(mixed $offset)
     {
-        // TODO: Implement offsetExists() method.
+        return isset($this->values[$offset]);
     }
 
     public function offsetGet(mixed $offset)
     {
-        // TODO: Implement offsetGet() method.
+        return $this->values[$offset];
     }
 
     public function offsetSet(mixed $offset, mixed $value)
     {
-        // TODO: Implement offsetSet() method.
+        $this->values[$offset] = $value;
     }
 
     public function offsetUnset(mixed $offset)
     {
-        // TODO: Implement offsetUnset() method.
+        unset($this->values[$offset]);
     }
+
     //countable
     public function count()
     {
         return count($this->values);
     }
+
     //JsonSer
     public function jsonSerialize()
     {
         return $this->values;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

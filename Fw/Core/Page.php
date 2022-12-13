@@ -70,4 +70,5 @@ class Page
         return array_merge($this->macrosToValueArray, $this->macrosToValueArrayHeader);
     }
 }
-
+$a=[1=>'null', 2=>''];
+var_dump(isset($a[1]));

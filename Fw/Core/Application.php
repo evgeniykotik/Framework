@@ -44,7 +44,7 @@ class Application
 
     private function getTemplatePath()
     {
-        $templatePath= Config::getValue("template");
+        $templatePath = Config::getValue("template");
         return $templatePath ?: "default";
     }
 
@@ -63,5 +63,25 @@ class Application
     public function getPager()
     {
         return $this->pager;
+    }
+
+    public function getSession(): Session
+    {
+        return $this->session;
+    }
+
+    public function getRequest(): Request
+    {
+        return $this->request;
+    }
+
+    public function getServer(): Server
+    {
+        return $this->server;
+    }
+
+    public function includeComponent(string $component, string $template, array $params)
+    {
+
     }
 }
