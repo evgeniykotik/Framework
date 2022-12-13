@@ -12,7 +12,7 @@ class Template
     private string $id;
     private $component;
 
-    public function __construct(Base $component,string $id = 'default')
+    public function __construct(string $id, Base $component)
     {
         $this->id = $id;
         $this->component = $component;
@@ -43,9 +43,9 @@ class Template
         $application = Multiton::get(Application::class);
         $pager = $application->getPager();
 
-        if (file_exists($styleCss)) $pager->addCss($this->__relativePath . $styleCss);
+        if (file_exists($styleCss)) $pager->addCss($this->getRelativePath() . "style.css");
 
-        if (file_exists($scriptJs)) $pager->addJs($this->__relativePath . $scriptJs);
+        if (file_exists($scriptJs)) $pager->addJs($this->getRelativePath() . "script.js");
     }
 
     public function getPath()

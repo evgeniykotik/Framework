@@ -80,8 +80,30 @@ class Application
         return $this->server;
     }
 
-    public function includeComponent(string $component, string $template, array $params)
+    public function includeComponent(string $component = "content:default", string $template = "default", array $params = [])
     {
+        $component = $this->getIncludeComponent($component, $params);
+        if (is_null($component)) return;
+        $componentTemplate = $component->setTemplate($template, $component);
+        $componentTemplate->executeComponent();
+    }
 
+    private function getIncludeComponent(string $component = "content:default", array $params = [])
+    {
+        $arrayOfPath = explode(":", $component);
+        foreach ($arrayOfPath as $value) {
+            $componentPath = __DIR__ . "/../components/".$value."/";
+        }
+        $componentInclude = $componentPath . ".class.php";
+        if (!file_exists($componentInclude)) return null;
+        require_once $componentInclude;
+        $component = new $componentPath($id, $params, $__path);
+        return $component;
     }
 }
+$component = "content:default";
+$arrayOfPath = explode(":", $component);
+foreach ($arrayOfPath as $value) {
+    $component_path = __DIR__ . "/../components/".$value;
+}
+echo $component_path;

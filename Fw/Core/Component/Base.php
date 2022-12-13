@@ -11,14 +11,14 @@ abstract class Base
     private string $__path;//путь к файловой структуре компонента
 
 
-    public function __construct($params, $__path, $id = "default")
+    public function __construct($id, $params, $__path)
     {
         $this->id = $id;
         $this->params = $params;
         $this->__path = $__path;
     }
 
-    public function setTemplate(string $idTemplate, Base $component)
+    private function setTemplate(string $idTemplate, Base $component)
     {
         $this->template = new Template($idTemplate, $component);
     }
@@ -31,5 +31,25 @@ abstract class Base
     public function getResult()
     {
         return $this->result;
+    }
+
+    public function setResult($result)
+    {
+        $this->result = $result;
+    }
+
+    public function getPath($__path)
+    {
+        return $this->__path;
+    }
+
+    public function getParams($__path)
+    {
+        return $this->params;
+    }
+
+    public function getId($__path)
+    {
+        return $this->id;
     }
 }
