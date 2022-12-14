@@ -11,10 +11,10 @@ $pager->addJs("https://www.google-analytics.com/analytics.js");
 $pager->addCss("assets/style.css");
 $pager->addCss("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
 $application->header();
-
+$application->includeComponent("content:example",  "default", []);
 ?>
 
-    <h1><?php $pager->showProperty('h1') ?></h1>
+    <h1><?php $pager->showProperty('h1'); ?></h1>
     <h2>28.11.2022</h2>
     <ol> Работа на первым этапом:
         <li>Создал гит-репазиторий</li>

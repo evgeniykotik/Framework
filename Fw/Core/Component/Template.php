@@ -30,11 +30,12 @@ class Template
 
     public function render($page = "template")
     {
-        $result_modifier = $this->__path . "result_modifier.php";
-        $template = $this->__path . "{$page}.php";
-        $component_epilog = $this->__path . "component_epilog.php";
-        $styleCss = $this->__path . "style.css";
-        $scriptJs = $this->__path . "script.js";
+        $fullPath = $this->__path . '/templates/' . $this->id . "/";
+        $result_modifier = $fullPath . "result_modifier.php";
+        $template = $fullPath . "{$page}.php";
+        $component_epilog = $fullPath . "component_epilog.php";
+        $styleCss = $fullPath . "style.css";
+        $scriptJs = $fullPath . "script.js";
 
         if (file_exists($result_modifier)) require_once $result_modifier;
         if (file_exists($template)) require_once $template;
@@ -43,9 +44,9 @@ class Template
         $application = Multiton::get(Application::class);
         $pager = $application->getPager();
 
-        if (file_exists($styleCss)) $pager->addCss($this->getRelativePath() . "style.css");
+        if (file_exists($styleCss)) $pager->addCss($fullPath . "style.css");
 
-        if (file_exists($scriptJs)) $pager->addJs($this->getRelativePath() . "script.js");
+        if (file_exists($scriptJs)) $pager->addJs($fullPath . "script.js");
     }
 
     public function getPath()

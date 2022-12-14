@@ -7,7 +7,7 @@ abstract class Base
     private array $result;//массив с результатами работы компонента
     private string $id;//строковой ид компонента
     private array $params;//входящие параметры компонента
-    private string $template;//экземпляр класса шаблона компонента
+    private $template;//экземпляр класса шаблона компонента
     private string $__path;//путь к файловой структуре компонента
 
 
@@ -18,14 +18,15 @@ abstract class Base
         $this->__path = $__path;
     }
 
-    private function setTemplate(string $idTemplate, Base $component)
+    public function setTemplate(string $idTemplate)
     {
-        $this->template = new Template($idTemplate, $component);
+        $this->template = new Template($idTemplate, $this);
+        $this->template->setPath($this->__path);
     }
 
     public function executeComponent()
     {
-        $this->template->render;
+        $this->template->render();
     }
 
     public function getResult()

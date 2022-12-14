@@ -81,21 +81,26 @@ class Application
         return $this->server;
     }
 
-    public function includeComponent(string $component = "content:default", string $template = "default", array $params = [])
+    public function includeComponent(string $component, string $template, array $params)
     {
-        $component = $this->getIncludeComponent($component, $params);
-        if (is_null($component)) return;
-        $componentTemplate = $component->setTemplate($template, $component);
-        $componentTemplate->executeComponent();
+        $componentInstance = $this->getIncludeComponent($component, $params);
+        if (is_null($componentInstance)) return;
+        $componentInstance->setTemplate($template);
+        $componentInstance->executeComponent();
     }
 
-    private function getIncludeComponent(string $component = "content:default", array $params = [])
+    public function getIncludeComponent(string $component, array $params)
     {
         $path = str_replace(":", "/", $component);
-        $componentPath = self::FOLDER_COMPONENTS . $path . "/.class.php";
-        if (!file_exists($componentPath)) return null;
+        $componentParts = explode(":", $component);
+        $componentClassName = $componentParts[1];
+        $componentPath = Application::FOLDER_COMPONENTS . $path . "/.class.php";
+        if (!file_exists($componentPath)) {
+            echo "no component";
+            return null;
+        }
         require_once $componentPath;
-        $componentInstance = new $componentPath($id, $params, $__path);
+        $componentInstance = new $componentClassName($componentParts[0], $params, Application::FOLDER_COMPONENTS . $path);
         return $componentInstance;
     }
 }
