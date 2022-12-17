@@ -39,17 +39,17 @@ abstract class Base
         $this->result = $result;
     }
 
-    public function getPath($__path)
+    public function getPath()
     {
         return $this->__path;
     }
 
-    public function getParams($__path)
+    public function getParams()
     {
         return $this->params;
     }
 
-    public function getId($__path)
+    public function getId()
     {
         return $this->id;
     }

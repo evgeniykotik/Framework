@@ -1,8 +1,9 @@
 <?php
 
+
 use Fw\Core\Component\Base;
 
-class Example extends Base
+class RenderForm extends Base
 {
     public function executeComponent()
     {

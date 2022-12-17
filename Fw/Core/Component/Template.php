@@ -44,7 +44,7 @@ class Template
         $application = Multiton::get(Application::class);
         $pager = $application->getPager();
 
-        if (file_exists($styleCss)) $pager->addCss($fullPath . "style.css");
+        if (file_exists($styleCss)) $pager->addCss($fullPath. "style.css");
 
         if (file_exists($scriptJs)) $pager->addJs($fullPath . "script.js");
     }

@@ -1,8 +1,9 @@
 <?php
 
+
 use Fw\Core\Component\Base;
 
-class Example extends Base
+class InputText extends Base
 {
     public function executeComponent()
     {
