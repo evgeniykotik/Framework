@@ -98,5 +98,5 @@ function br()
     echo "<br>";
 }
 
-handleForm($this->component->getParams());
+handleForm($params);
 

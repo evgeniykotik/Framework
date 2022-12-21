@@ -1,3 +1,2 @@
-<?php
+<h2><?php echo $params['title']?></h2>
 
-echo "<h3>Компонент</h3>";
