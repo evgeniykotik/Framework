@@ -11,7 +11,7 @@ $pager->addJs("https://www.google-analytics.com/analytics.js");
 $pager->addCss("assets/style.css");
 $pager->addCss("https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css");
 $application->header();
-$application->includeComponent("content:example",  "default", []);
+$application->includeComponent("content:example",  "default", ["Компонент", " подключил", 'title'=>"Hello World"]);
 ?>
 
     <h1><?php $pager->showProperty('h1'); ?></h1>
