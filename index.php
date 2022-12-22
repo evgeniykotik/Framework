@@ -2,7 +2,6 @@
 
 require_once 'Fw/init.php';
 
-
 if (!defined("ACCESS")) {
     die("Доступ закрыт");
 }
@@ -141,6 +140,7 @@ $application->includeComponent("content:RenderForm", "default", [
         ]
     ]
 ]);
+
 ?>
     <div class="body">
         <h1><?php $pager->showProperty('h1'); ?></h1>
