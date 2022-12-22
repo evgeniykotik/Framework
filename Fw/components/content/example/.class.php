@@ -6,7 +6,7 @@ class Example extends Base
 {
     public function executeComponent()
     {
-        parent::executeComponent();
+        $this->template->render();
         foreach ($this->getParams() as $k => $v) {
             if ($k != 'title')
                 echo "" . $v;

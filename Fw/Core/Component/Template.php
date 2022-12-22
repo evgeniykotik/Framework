@@ -31,6 +31,7 @@ class Template
     public function render($page = "template")
     {
         $params = $this->component->getParams();
+        $result = $this->component->getResult();
         $fullPath = $this->__path . '/templates/' . $this->id . "/";
         $result_modifier = $fullPath . "result_modifier.php";
         $template = $fullPath . "{$page}.php";
