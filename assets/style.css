@@ -1,7 +1,7 @@
 h1 {
     font-family: Cambria;
     font-size: larger;
-    color: blueviolet;
+    color: #3f3a46;
 }
 
 h2 {
@@ -11,3 +11,31 @@ h2 {
 ol {
     font-weight: bold;
 }
+
+header {
+    box-shadow:0px 5px 5px #7a7a81;
+    background-color: #95959b;
+}
+
+footer {
+    background-color: black;
+}
+
+input, textarea, select {
+    border-radius: 3px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.body {
+    margin: 0 0 0 10;
+}
+
+body {
+    background: url("fon.jpg") no-repeat;
+    background-size: 100%;
+    -moz-background-size: 100%;
+    -webkit-background-size: 100%;
+    -o-background-size: 100%;
+}
+
