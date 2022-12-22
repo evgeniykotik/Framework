@@ -15,24 +15,27 @@ class Page
 
     public function addJs(string $src)
     {
-        if (!in_array($src, $this->headerValuesArray)) {
-            $this->headerValuesArray[] = $src;
-            $this->macrosToValueArrayHeader[$this->macros(MacrosType::JS, $this->macrosIndex())] = "<script type='text/javascript' src='$src'></script>";
+        $srcPrepared = str_replace(" ", "", $src);
+        if (!in_array($srcPrepared, $this->headerValuesArray) && !empty($srcPrepared)) {
+            $this->headerValuesArray[] = $srcPrepared;
+            $this->macrosToValueArrayHeader[$this->macros(MacrosType::JS, $this->macrosIndex())] = "<script type='text/javascript' src='$srcPrepared'></script>";
         }
     }
 
     public function addCss(string $link)
     {
-        if (!in_array($link, $this->headerValuesArray)) {
-            $this->headerValuesArray[] = $link;
-            $this->macrosToValueArrayHeader[$this->macros(MacrosType::CSS, $this->macrosIndex())] = "<link rel='stylesheet' href='$link'>";
+        $linkPrepared = str_replace(" ", "", $link);
+        if (!in_array($linkPrepared, $this->headerValuesArray) && !empty($linkPrepared)) {
+            $this->headerValuesArray[] = $linkPrepared;
+            $this->macrosToValueArrayHeader[$this->macros(MacrosType::CSS, $this->macrosIndex())] = "<link rel='stylesheet' href='$linkPrepared'>";
         }
     }
 
     public function addString(string $str)
     {
-        if (!in_array($str, $this->macrosToValueArrayHeader)) {
-            $this->macrosToValueArrayHeader[$this->macros(MacrosType::STRING, $this->macrosIndex())] = $str;
+        $strPrepared = str_replace(" ", "", $str);
+        if (!in_array($strPrepared, $this->macrosToValueArrayHeader) && !empty($strPrepared)) {
+            $this->macrosToValueArrayHeader[$this->macros(MacrosType::STRING, $this->macrosIndex())] = $strPrepared;
         }
     }
 
@@ -70,4 +73,3 @@ class Page
         return array_merge($this->macrosToValueArray, $this->macrosToValueArrayHeader);
     }
 }
-
