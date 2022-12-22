@@ -4,10 +4,10 @@ namespace Fw\Core\Component;
 
 abstract class Base
 {
-    private array $result;//массив с результатами работы компонента
+    private array $result = [];//массив с результатами работы компонента
     private string $id;//строковой ид компонента
     private array $params;//входящие параметры компонента
-    private $template;//экземпляр класса шаблона компонента
+    protected $template;//экземпляр класса шаблона компонента
     private string $__path;//путь к файловой структуре компонента
 
 
@@ -24,19 +24,11 @@ abstract class Base
         $this->template->setPath($this->__path);
     }
 
-    public function executeComponent()
-    {
-        $this->template->render();
-    }
+    abstract function executeComponent();
 
     public function getResult()
     {
         return $this->result;
-    }
-
-    public function setResult($result)
-    {
-        $this->result = $result;
     }
 
     public function getPath()
